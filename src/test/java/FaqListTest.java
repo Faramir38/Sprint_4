@@ -1,14 +1,9 @@
 import POM.MainPageSamokat;
 import org.junit.After;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.junit.Assert;
+import org.junit.Test;
 
-public class FaqListTest {
-
-    private WebDriver driver;
+public class FaqListTest extends BaseWebTest{
 
     //эталонные тексты ответов
     private String[] standardAnswerText = {
@@ -29,13 +24,8 @@ public class FaqListTest {
     @Test
     public void checkFaqListText() {
 
-        if (true) {
-            driver = new ChromeDriver();
-        } else {
-            driver = new FirefoxDriver();
-        }
-
-        driver.get("https://qa-scooter.praktikum-services.ru/"); //открываем страницу самоката
+        //запускаем драйвер браузера и открываем страницу
+        initWebDriver("Chrome", "https://qa-scooter.praktikum-services.ru/");
 
         //создаем объект класса главной страницы
         MainPageSamokat objMainPage = new MainPageSamokat(driver);

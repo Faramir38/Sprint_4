@@ -2,9 +2,6 @@ package POM;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPageSamokat {
 
@@ -56,15 +53,14 @@ public class MainPageSamokat {
 
     //скролл главной страницы вниз до последнего вопроса
     public void scrollToQuestions() {
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",
-                driver.findElement(questionHeader[7]));
+        UtilSamokat.scrollTo(driver, questionHeader[7]);
+
     }
 
     //клик по вопросу, нумерация от 0 до 7, сверху вниз, c ожиданием открытия
     public void clickQuestion(int questionNumber) {
         driver.findElement(questionHeader[questionNumber]).click();
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(
-                driver.findElement(answerText[questionNumber])));
+        UtilSamokat.waitForVisibility(driver, answerText[questionNumber]); //ждем открытия ответа
     }
 
     //проверка видимости текста ответа на вопрос
@@ -83,8 +79,7 @@ public class MainPageSamokat {
         if (orderButtonPlace) {
             driver.findElement(orderHeaderButton).click();
         } else {
-            ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",
-                    driver.findElement(orderBottomButton));
+            UtilSamokat.scrollTo(driver, orderBottomButton);
             driver.findElement(orderBottomButton).click();
         }
 

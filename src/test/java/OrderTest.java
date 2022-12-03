@@ -5,12 +5,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 @RunWith(Parameterized.class)
-public class OrderTest {
+public class OrderTest extends BaseWebTest {
 
     private final boolean buttonPlace; //верхняя (MainPageSamokat.TOP_ORDER) или
                                         //нижняя кнопка заказа (MainPageSamokat.BOTTOM_ORDER)
@@ -48,18 +45,11 @@ public class OrderTest {
                     "07.12.2022", 1, "grey", "Второй комментарий"}
         };
     }
-    private WebDriver driver;
-
     @Test
     public void CheckOrder() {
 
-        if (true) {
-            driver = new ChromeDriver();
-        } else {
-            driver = new FirefoxDriver();
-        }
-
-        driver.get("https://qa-scooter.praktikum-services.ru/"); //открываем страницу самоката
+        //запускаем драйвер браузера и открываем страницу
+        initWebDriver("Firefox", "https://qa-scooter.praktikum-services.ru/");
 
         //создаем объект главной страницы
         MainPageSamokat objMainPage = new MainPageSamokat(driver);

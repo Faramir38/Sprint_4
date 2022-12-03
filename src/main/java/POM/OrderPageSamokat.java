@@ -2,8 +2,6 @@ package POM;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class OrderPageSamokat {
 
@@ -141,8 +139,7 @@ public class OrderPageSamokat {
     //ввод данных на первой странице
     public void fillFirstPage(String name, String surname, String address, String metro,
                               String phone){
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(
-                driver.findElement(nameField))); //ждем открытия первой страницы заказа
+        UtilSamokat.waitForVisibility(driver, nameField); //ждем открытия первой страницы заказа
         enterName(name);
         enterSurname(surname);
         enterAddress(address);
@@ -153,8 +150,7 @@ public class OrderPageSamokat {
 
     //ввод данных на второй странице
     public void fillSecondPage(String date, int period, String color, String comment ) {
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(
-                driver.findElement(periodField))); //ждем открытия второй страницы заказа
+        UtilSamokat.waitForVisibility(driver, periodField); //ждем открытия второй страницы заказа
         selectPeriod(period);
         selectColor(color);
         enterComment(comment);
@@ -164,11 +160,11 @@ public class OrderPageSamokat {
 
     //подтверждаем заказ и проверяем что открылось окно "Заказ оформлен"
     public void confirmOrder() {
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(
-                driver.findElement(yesButton))); //ждем открытия окна подтверждения заказа
+        UtilSamokat.waitForVisibility(driver, yesButton); //ждем открытия окна подтверждения заказа
+
         clickYes();
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(
-                driver.findElement(statusButton))); //ждем открытия окна "Заказ оформлен"
+        UtilSamokat.waitForVisibility(driver, statusButton); //ждем открытия окна "Заказ оформлен"
+
     }
 
 }
